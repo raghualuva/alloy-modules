@@ -4,7 +4,7 @@ declare "local" {
   }
 
   export "output" {
-    value = prometheus.exporter.unix.node_exporter.output
+    value = prometheus.exporter.unix.node_exporter.targets
   }
 
 }
