@@ -1,4 +1,10 @@
-declare "node_exporter" {
+declare "local" {
+
   prometheus.exporter.unix "node_exporter" { 
   }
+
+  export "output" {
+    value = prometheus.exporter.unix.output
+  }
+
 }
