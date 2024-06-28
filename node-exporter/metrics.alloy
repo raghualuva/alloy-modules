@@ -9,6 +9,23 @@ declare "local" {
 
 }
 
+declare "kubernetes" {
+
+  discovery.kubernetes "example_app" {
+  	role = "pod"
+  	selectors {
+  	  role = "pod"
+  	  label = "app.kubernetes.io/name=prometheus-example-app"
+  	}
+  }
+
+  export "output" {
+    value = discovery.kubernetes.example_app.output
+  }
+
+}
+
+
 declare "scrape" {
 
   argument "targets" {
