@@ -20,7 +20,7 @@ declare "kubernetes" {
   }
 
   export "output" {
-    value = discovery.kubernetes.example_app.output
+    value = discovery.kubernetes.example_app.targets
   }
 
 }
