@@ -1,0 +1,4 @@
+declare "node_exporter" {
+  prometheus.exporter.unix "node_exporter" { 
+  }
+}
