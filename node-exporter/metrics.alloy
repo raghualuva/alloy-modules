@@ -1,7 +1,7 @@
-declare "local" {
+declare "node_metrics" {
 
-  prometheus.exporter.unix "node_exporter" { 
-  }
+  // node exporter component built in alloy
+  prometheus.exporter.unix "node_exporter" {}
 
   export "output" {
     value = prometheus.exporter.unix.node_exporter.targets
@@ -11,7 +11,8 @@ declare "local" {
 
 declare "kubernetes" {
 
-  discovery.kubernetes "example_app" {
+  // service discovery for all of the pods
+  discovery.kubernetes "prometheus_example_app" {
   	role = "pod"
   	selectors {
   	  role = "pod"
@@ -20,11 +21,10 @@ declare "kubernetes" {
   }
 
   export "output" {
-    value = discovery.kubernetes.example_app.targets
+    value = discovery.kubernetes.prometheus_example_app.targets
   }
 
 }
-
 
 declare "scrape" {
 
@@ -36,7 +36,7 @@ declare "scrape" {
     comment = "Must be a list(MetricsReceiver) where collected logs should be forwarded to"
   }
 
-  prometheus.scrape "node_exporter" {
+  prometheus.scrape "demo" {
     forward_to = argument.forward_to.value
     targets = argument.targets.value
   }
